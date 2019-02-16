@@ -17,9 +17,10 @@ var intervalId;
 var clockRunning = false;
 
 // Our stopwatch object
+
 var stopwatch = {
 
-  time: 0,
+  time: 30,
   // lap: 1,
 
   reset: function() {
@@ -29,7 +30,8 @@ var stopwatch = {
 
   start: function() {
     if (!clockRunning) {
-      intervalId = setInterval(stopwatch.count, -1000);
+      //the reason this isn't a -1000 is because it has to count up like normal time you can't make ti go backwards yet. 
+      intervalId = setInterval(stopwatch.count, 1000);
       clockRunning = true;
     }
   },
@@ -48,6 +50,10 @@ var stopwatch = {
 
     // DONE: Use the variable we just created to show the converted time in the "display" div.
     $(".timer").text(converted);
+    //this prevents the countdown going into the negative numbers. 
+    if (stopwatch.time === 0 ) {
+      clearInterval(stopwatch)
+    }
   },
   timeConverter: function(t) {
     var minutes = Math.floor(t / 60);

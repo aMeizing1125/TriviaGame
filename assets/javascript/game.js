@@ -29,23 +29,26 @@ var timeProgress = {
 }
 
 //game functionality 
-
+window.onload = function() {
+  $(".reset").on("click", stopwatch.reset);
+  $(".start").on("click", stopwatch.start);
+};
 
 
 questionsArray = [
   {
     question: "What does HTML mean?",
-    answers: ["HyperText Markup Language", "Hypertech Markup Language", "Holly Toledo Make Loli", "Hyper Text Markup Language", null],
+    answers: ["HyperText Markup Language", "Hypertech Markup Language", "Holly Toledo Make Loli", "Hyper Text Markup Language"],
     correctAnswer: "HyperText Markup Language",
   },
   {
     question: "What symbol notates a class in CSS?",
-    answers: ["@", "#", "%", ".", null],
+    answers: ["@", "#", "%", "."],
     correctAnswer: ".",
   },
   {
     question: "What does API stand represent?",
-    answer: ["Anti-Pornography Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface", null],
+    answer: ["Anti-Pornography Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
     correctAnswer: "Application Programming Interface",
   }
 ];
