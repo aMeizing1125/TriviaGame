@@ -1,0 +1,64 @@
+/* General Body */
+body {
+background-image: url("../images/triviaBackground.jpg");
+background-size: 100%;
+display: grid;
+font-family: 'Amatic SC', cursive;
+font-size: 36px;
+line-height: 1.2;
+}
+.everything {
+
+}
+button {
+    font-size: 36px;
+    padding: 10px;
+}
+button:hover {
+    background-color: rgba(13,29,56, .8);
+    color: white;
+}
+
+
+/* Scoreboard */
+.scoreboard {
+    transform: rotate(-20deg);
+    color: rgba(240, 251, 85, 0.5);
+    margin-top: 110px;
+    width: 350px;
+    font-size: 48px;
+    margin-left: 80px;
+    position: absolute;
+    font-family: 'Fredericka the Great', cursive;
+   
+}
+
+.score {
+
+}
+
+.timer {
+
+}
+/* Q&A area the board */
+.board {
+    
+}
+
+.displayBoard {
+    margin-left: 50%;
+    margin-top: 8%;
+    background-color: rgba();
+    max-width: 100%;
+    overflow: none;
+    background-color: rgba(211, 211, 211, .6);
+    padding: 3%;
+
+}
+.questionArea {
+    font-weight: bold;
+
+}
+.multipleChoice {
+
+}
