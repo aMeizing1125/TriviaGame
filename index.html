@@ -27,16 +27,17 @@
     <div class="board">
       <div class="displayBoard">
 
-        <div class="questionArea"></div>
-        <form class="multipleChoice">
-
+        <div class="questionArea">Your questions will display here</div>
+        <!-- I changed this div into a form while testing buttons and labels and inputs. 
+        I left it since there didn't seem to be a reason to change it back -->
+        <div class="multipleChoice"> 
           <!-- I tried making this divs and the text showed, but they couldn't be selected so I changed them to inputs. However I wasn't able to add text within the  -->
-          <div><input id="answer1" type="radio"><label for="answer1"></label></div>
-          <div><input id="answer2" type="radio"><label for="answer2"></label></div>
-          <div><input id="answer3" type="radio"><label for="answer3"></label></div>
-          <div><input id="answer4" type="radio"><label for="answer4"></label></div>
+          <div id="answer1">Your answers will display here.</div>
+          <div id="answer2">Your answers will display here.</div>
+          <div id="answer3">Your answers will display here.</div>
+          <div id="answer4">Your answers will display here.</div>
           <button type="submit" id="submit">Submit</button>
-        </form>
+        </div>
       </div>
 
 
