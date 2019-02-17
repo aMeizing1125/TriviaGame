@@ -57,20 +57,11 @@ var stopwatch = {
 
   start: function() {
     if (!clockRunning) {
-      //the reason this isn't a -1000 is because it has to count up like normal time you can't make ti go backwards yet. 
+      //the reason this isn't a -1000 is because it has to count up like normal time you can't make it go backwards yet. 
       intervalId = setInterval(stopwatch.count, 1000);
       clockRunning = true;
       $('#submit').show();
-      $('.questionArea').text(questionsArray[0].question);
-      //the answers aren't displaying 
-      $('.answer1').text(questionsArray[0].answer[0]);
-      $('.answer2').text(questionsArray[0].answer[1]);
-      $('.answer3').text(questionsArray.answer[2]);
-      $('.answer4').text(questionsArray.answer[3]);
-
-      
-        // you need to record the users choice and compare
-      
+      nextQuestion();
     }
   },
   stop: function() {
@@ -94,6 +85,21 @@ var stopwatch = {
       console.log("yes it works below 0")
     }
   },
+//so I moved this from underneath the count()  so it would be separate and I could call it. 
+//for some reason it seemed smarter than leaving it within the count() 
+  nextQuestion: function() {
+
+    $('.questionArea').text(questionsArray[0].question);
+    //the answers aren't displaying 
+    $('.answer1').text(questionsArray[0].answer[0]);
+    $('.answer2').text(questionsArray[0].answer[1]);
+    $('.answer3').text(questionsArray.answer[2]);
+    $('.answer4').text(questionsArray.answer[3]);
+
+    
+      // you need to record the users choice and compare
+  },
+  
   timeConverter: function(t) {
     var minutes = Math.floor(t / 60);
     var seconds = t - (minutes * 60);
