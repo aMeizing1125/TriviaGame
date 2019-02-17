@@ -41,10 +41,11 @@ var clockRunning = false;
 var playersGuess;
 //stuff hide() before game start 
 $('#submit').hide();
-$('#answer1').hide();
-$('#answer2').hide();
-$('#answer3').hide();
-$('#answer4').hide();
+//both buttons and divs should be hidden 
+$('.answer1').hide();
+$('.answer2').hide();
+$('.answer3').hide();
+$('.answer4').hide();
 
 // Our stopwatch object
 
@@ -68,17 +69,16 @@ var stopwatch = {
       intervalId = setInterval(stopwatch.count, 1000);
       clockRunning = true;
       $('#submit').show();
-      $('#submit').show();
-      $('#answer1').show();
-      $('#answer2').show();
-      $('#answer3').show();
-      $('#answer4').show();
+      $('.answer1').show();
+      $('.answer2').show();
+      $('.answer3').show();
+      $('.answer4').show();
       $('.questionArea').text(questionsArray[0].question);
       //the answers aren't displaying 
-      $('#answer1').text(questionsArray[0].answers[0]);
-      $('#answer2').text(questionsArray[0].answers[1]);
-      $('#answer3').text(questionsArray[0].answers[2]);
-      $('#answer4').text(questionsArray[0].answers[3]);
+      $('.answer1').text(questionsArray[0].answers[0]);
+      $('.answer2').text(questionsArray[0].answers[1]);
+      $('.answer3').text(questionsArray[0].answers[2]);
+      $('.answer4').text(questionsArray[0].answers[3]);
     } else {
       alert("You've already clicked start. Pick an answer quick!");
     }
