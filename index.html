@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Fredericka+the+Great" rel="stylesheet">
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Trivia Game</title>
 </head>
@@ -26,17 +26,19 @@
 
     <div class="board">
       <div class="displayBoard">
-        
-        <div class="questionArea">This is a question area</div>
-        <div class="multipleChoice">Multiple choice area
-          <div class="answer1"></div>
-          <div class="answer2"></div>
-          <div class="answer3"></div>
-          <div class="answer4"></div>
-        </div>
-        <button type="submit" id="submit">Submit</button>
+
+        <div class="questionArea"></div>
+        <form class="multipleChoice">
+
+          <!-- I tried making this divs and the text showed, but they couldn't be selected so I changed them to inputs. However I wasn't able to add text within the  -->
+          <div><input id="answer1" type="radio"><label for="answer1"></label></div>
+          <div><input id="answer2" type="radio"><label for="answer2"></label></div>
+          <div><input id="answer3" type="radio"><label for="answer3"></label></div>
+          <div><input id="answer4" type="radio"><label for="answer4"></label></div>
+          <button type="submit" id="submit">Submit</button>
+        </form>
       </div>
-      
+
 
     </div>
   </div>
