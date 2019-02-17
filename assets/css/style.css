@@ -18,6 +18,9 @@ button:hover {
     background-color: rgba(13,29,56, .8);
     color: white;
 }
+/* #submit {
+    visibility: hidden;
+} */
 
 
 /* Scoreboard */
