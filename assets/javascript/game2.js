@@ -26,7 +26,7 @@ questionsArray = [{
   },
   {
     question: "What does API stand represent?",
-    answers: ["Anti-Pornography Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
+    answers: ["Anti-Programming Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
     correctAnswer: "Application Programming Interface",
     // questionIndex: 2,
   },
@@ -130,6 +130,8 @@ var stopwatch = {
 
   verify: function () {
     clockRunning = false;
+    //trying to clear the selectedAnswer so it will display after the first question is verfied. 
+    $(selectedAnswer).empty();
     //this stores the correct answer, and the selected answer in variables. 
     var selectedAnswer = $('.selected').text();
     var correctAnswer = questionsArray[questionIndex].correctAnswer;
@@ -148,12 +150,19 @@ var stopwatch = {
     $(answerResult).addClass("result");
     $("#results").empty();
     console.log("Correct answer: " + correctAnswer);
-    console.log("Correct answer: " + selectedAnswer);
+    console.log("Selected answer: " + selectedAnswer);
     $("#answers").empty();
     $("#submit").hide();
     $("#results").append(correctResult, answerResult);
     wait5 = setTimeout(stopwatch.prepareNewQuestion, 1000 * 10);
-
+    // probably need to add the incorrectGuess++ and correctGuess++
+    // var correctGuess = 0; var incorrectGuess = 0;
+    // if (correctAnswer === selectedAnswer) {
+    //     correctGuess++;
+    // } else {
+    //     incorrectGuess++;
+    // }
+    
   },
 
   start: function () {
@@ -163,8 +172,7 @@ var stopwatch = {
       clockRunning = true;
       $('#submit').show();
       $('#answer').show();
-      intervalId = setInterval(stopwatch.count, 1000);
-
+      
       //question area
       thisQuestion = questionsArray[questionIndex].question;
       $('.questionArea').text(thisQuestion);
@@ -186,8 +194,6 @@ var stopwatch = {
 
         $("#answers").append(thisAnswer);
       };
-
-
 
     } else {
       alert("You've already clicked start. Pick an answer quick!");
