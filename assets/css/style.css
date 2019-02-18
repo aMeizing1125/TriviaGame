@@ -63,6 +63,11 @@ button:hover {
     font-weight: bold;
 
 }
-.multipleChoice {
+.selected {
+    background-color: blue;
 
+}
+
+.result {
+    font-size: 40px;
 }
