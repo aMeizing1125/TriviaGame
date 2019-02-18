@@ -25,12 +25,6 @@ questionsArray = [{
     // questionIndex: 0,
   },
   {
-    question: "What symbol notates a class in CSS?",
-    answers: ["@", "#", "%", "."],
-    correctAnswer: ".",
-    // questionIndex: 1,
-  },
-  {
     question: "What does API stand represent?",
     answers: ["Anti-Pornography Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
     correctAnswer: "Application Programming Interface",
@@ -84,6 +78,13 @@ questionsArray = [{
     correctAnswer: "Don't repeat yourself",
     // questionIndex: 10,  
   },
+  // i think since the answer is symbol it is doing something weird
+  // {
+  //   question: "What symbol notates a class in CSS?",
+  //   answers: ["@", "#", "%", "."],
+  //   correctAnswer: ".",
+  //   // questionIndex: 1,
+  // },
   
 ];
 
@@ -102,14 +103,14 @@ $('.answers').hide();
 var stopwatch = {
   //change this back to 30secs after testing***
   // time: 30,
-  time: 5,
+  time: 15,
  
 
   reset: function () {
-    stopwatch.time = 1000 * 5;
-    $(".timer").text("Timer: 00:05");
+    stopwatch.time = 1000 * 15;
+    $(".timer").text("Timer: 00:15");
     //change to 30
-    this.time = 5;
+    this.time = 15
     $('#submit').hide();
     $('.answers').hide();
   },
@@ -124,21 +125,27 @@ var stopwatch = {
     clearInterval(intervalId);
     stopwatch.start();
     // stopwatch.time = 30;
-    topwatch.time = 5;
+    stopwatch.time = 15;
   },
 
   verify: function () {
     clockRunning = false;
     //this stores the correct answer, and the selected answer in variables. 
     var selectedAnswer = $('.selected').text();
-
     var correctAnswer = questionsArray[questionIndex].correctAnswer;
     //this will empty the question area and clear the answer radio buttons as well as the submit
     $('#submit').hide();
-    var correctResult = $("<div>").text("The correct answer: " + correctAnswer);
-    correctAnswer.addClass("result");
-    var answerResult = $("<div>").text("Your answer: " + selectedAnswer);
-    answerResult.addClass("result");
+    var correctResult;
+    var answerResult;
+
+    //darin said id did too much in this line to 
+    // var correctResult = $("<div>").text("The correct answer: " + correctAnswer);
+    var correctResult = $("<div>");
+    correctResult.text("The correct answer: " + correctAnswer);
+    $(correctAnswer).addClass("result");
+    var answerResult = $("<div>")
+    answerResult.text("Your answer: " + selectedAnswer);
+    $(answerResult).addClass("result");
     $("#results").empty();
     console.log("Correct answer: " + correctAnswer);
     console.log("Correct answer: " + selectedAnswer);
@@ -185,7 +192,7 @@ var stopwatch = {
     } else {
       alert("You've already clicked start. Pick an answer quick!");
     }
-    allAnswers - $('.answer');
+    allAnswers = $('.answer');
     allAnswers.on('click', function () {
       //toggle means switch between the selected options. 
       $(".selected").toggleClass("selected");
