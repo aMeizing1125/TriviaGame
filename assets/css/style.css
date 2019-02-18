@@ -1,21 +1,22 @@
 /* General Body */
 body {
-background-image: url("../images/triviaBackground.jpg");
-background-size: 100%;
-display: grid;
-font-family: 'Amatic SC', cursive;
-font-size: 36px;
-line-height: 1.2;
+    background-image: url("../images/triviaBackground.jpg");
+    background-size: 100%;
+    display: grid;
+    font-family: 'Amatic SC', cursive;
+    font-size: 36px;
+    line-height: 1.2;
 }
-.everything {
 
-}
+.everything {}
+
 button {
     font-size: 36px;
     padding: 10px;
 }
+
 button:hover {
-    background-color: rgba(13,29,56, .8);
+    background-color: rgba(13, 29, 56, .8);
     color: white;
 }
 
@@ -34,20 +35,15 @@ button:hover {
     margin-left: 80px;
     position: absolute;
     font-family: 'Fredericka the Great', cursive;
-   
-}
-
-.score {
 
 }
 
-.timer {
+.score {}
 
-}
+.timer {}
+
 /* Q&A area the board */
-.board {
-    
-}
+.board {}
 
 .displayBoard {
     margin-left: 50%;
@@ -59,10 +55,12 @@ button:hover {
     padding: 3%;
 
 }
+
 .questionArea {
     font-weight: bold;
 
 }
+
 .selected {
     background-color: blue;
 
@@ -70,4 +68,121 @@ button:hover {
 
 .result {
     font-size: 40px;
+}
+
+@media screen and (max-width: 1400px) {
+    .scoreboard {
+        transform: rotate(-20deg);
+        color: rgba(240, 251, 85, 0.5);
+        margin-top: 90px;
+        width: 250px;
+        font-size: 36px;
+        margin-left: 80px;
+        position: absolute;
+        font-family: 'Fredericka the Great', cursive;
+
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    body {
+        background-image: url("../images/background2.jpg");
+    }
+
+    .scoreboard {
+        transform: rotate(0deg);
+        color: rgba(240, 251, 85, 0.5);
+        margin-top: 110px;
+        width: 260px;
+        font-size: 36px;
+        margin-left: 180px;
+        position: absolute;
+        font-family: 'Fredericka the Great', cursive;
+
+    }
+
+    .displayBoard {
+        margin-left: 40%;
+        margin-top: 10%;
+        background-color: rgba();
+        max-width: 100%;
+        overflow: none;
+        background-color: rgba(211, 211, 211, .6);
+        padding: 3%;
+
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    body {
+        background-image: url("../images/background2.jpg");
+    }
+
+    .scoreboard {
+        transform: rotate(0deg);
+        color: rgba(240, 251, 85, 0.5);
+        margin-top: 110px;
+        width: 260px;
+        font-size: 36px;
+        margin-left: 170px;
+        position: absolute;
+        font-family: 'Fredericka the Great', cursive;
+
+    }
+
+    .displayBoard {
+        margin-left: 40%;
+        margin-top: 10%;
+        background-color: rgba();
+        max-width: 100%;
+        overflow: none;
+        background-color: rgba(211, 211, 211, .6);
+        padding: 3%;
+
+    }
+}
+@media screen and (max-width: 1000px) {
+    body {
+        background-image: url("../images/mobileBackground.jpg");
+    }
+
+    .scoreboard {
+        display: block;
+        float: left;
+        transform: rotate(0deg);
+        color: rgba(240, 251, 85, 0.5);
+        margin-top: 10px;
+        width: 100%;
+        font-size: 36px;
+        position: relative;
+        font-family: 'Fredericka the Great', cursive;
+        clear: both;
+        margin-left: 10px;
+    }
+.board {
+    width: 100%;
+    display: block;
+    clear: both;
+}
+    .displayBoard {
+        float: left;
+        display: block;
+        margin-top: 10px;
+        background-color: rgba();
+        overflow: none;
+        background-color: rgba(211, 211, 211, .6);
+        padding: 3%;
+        margin-left: 10px;
+        
+    }
+    /* This isn't working. I need to play with this more.  */
+    /* .container:before,
+    .container:after { */
+    /* content: "";
+}
+
+    .container:after {
+    clear: both;
+} */
+
 }

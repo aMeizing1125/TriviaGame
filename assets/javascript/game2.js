@@ -35,7 +35,56 @@ questionsArray = [{
     answers: ["Anti-Pornography Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
     correctAnswer: "Application Programming Interface",
     // questionIndex: 2,
-  }
+  },
+  {
+    question: "Variables can be declared in Javascript using the ___ keyword", 
+    answers: ["varr", "variable", "val", "var"],
+    correctAnswer: "var",
+    // questionIndex: 3,  
+  },
+  {
+    question: "A very useful too for testing code and debugging is ?", 
+    answers: ["bash", "github", "console.log", "for loops"],
+    correctAnswer: "console.log",
+    // questionIndex: 4,  
+  },
+  {
+    question: "A function's ___ are only visible from within the function body.", 
+    answers: ["arguments", "definitions", "keys", "values"],
+    correctAnswer: "arguments",
+    // questionIndex: 5,  
+  },
+  {
+    question: "We can use Javascript to directly write to the HTML page using which?", 
+    answers: ["console.log", "document.write", "$('document').write", "variables"],
+    correctAnswer: "document.write",
+    // questionIndex: 6,  
+  },
+  {
+    question: "Iterations always start counting with which number?", 
+    answers: ["1", "2", "3", "0"],
+    correctAnswer: "0",
+    // questionIndex: 7,  
+  },
+  {
+    question: "You can get the number of elements in an array using the ___property.", 
+    answers: ["variable.length", "array.length", "var.length", "array.index"],
+    correctAnswer: "array.length",
+    // questionIndex: 8,  
+  },
+  {
+    question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.", 
+    answers: ["event.key", "browser.event", "page.key", "document.onkeyup"],
+    correctAnswer: "document.onkeyup",
+    // questionIndex: 9,  
+  },
+  {
+    question: "What does DRY stand for?", 
+    answers: ["Don't recommend yellowtail", "Don't repeat yourself", "Don't remove yourself", "Don't relive yesterday"],
+    correctAnswer: "Don't repeat yourself",
+    // questionIndex: 10,  
+  },
+  
 ];
 
 
@@ -48,11 +97,13 @@ $('.answers').hide();
 //changed it to 1 div class answer instead of one div for each answer. 
 
 
-// Our stopwatch object
+
+
 var stopwatch = {
   //change this back to 30secs after testing***
   // time: 30,
   time: 5,
+ 
 
   reset: function () {
     stopwatch.time = 1000 * 5;
@@ -72,8 +123,8 @@ var stopwatch = {
     clearTimeout(wait5);
     clearInterval(intervalId);
     stopwatch.start();
-    stopwatch.time = 30;
-
+    // stopwatch.time = 30;
+    topwatch.time = 5;
   },
 
   verify: function () {
@@ -96,8 +147,6 @@ var stopwatch = {
     $("#results").append(correctResult, answerResult);
     wait5 = setTimeout(stopwatch.prepareNewQuestion, 1000 * 10);
 
-
-
   },
 
   start: function () {
@@ -110,13 +159,13 @@ var stopwatch = {
       intervalId = setInterval(stopwatch.count, 1000);
 
       //question area
-      var thisQuestion = questionsArray[questionIndex].question;
+      thisQuestion = questionsArray[questionIndex].question;
       $('.questionArea').text(thisQuestion);
 
       //answer area
-      //debuggin questionIndex isn't defined. I tried adding a quesitonIndex  property under questionArray.quesiton, but it caused line 113 to stop working. 
-      //I don't understand why line 113 works and can define [questionIndex] but a function within the object the same level can't
-      theseAnswers = questionArray[questionIndex].answers[i];
+      //debuggin questionIndex isn't defined. I tried adding a quesitonIndex  property under questionArray.question, but it caused line 86 to stop working. 
+      //I don't understand why line 86 works and can define [questionIndex] but a function within the object the same level can't
+      theseAnswers = questionArray[questionIndex].answers;
       for (i = 0; i < theseAnswers.length; i++) {
         //makes a new button and stores it
         thisAnswer = $("<button>");
@@ -194,11 +243,3 @@ var stopwatch = {
 
 
 
-//randomizes questions
-// function selectRandomQuestion(){
-//   var randomIndex = Math.floor(Math.random()*questionsArray.length);
-//   currentQuestion = questionsArray[randomIndex];
-
-//   // remove question from array.  
-//   questionsArray.splice(randomIndex,1);
-// }
