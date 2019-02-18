@@ -12,12 +12,12 @@ window.onload = function () {
   $(".start").on("click", stopwatch.start);
 };
 
-var quesitonIndex = 0;
+var questionIndex = 0;
 //  Variable that will hold our setInterval that runs the stopwatch
 var intervalId;
 // prevents the clock from being sped up unnecessarily
 var clockRunning = false;
-
+var questionsArray;
 questionsArray = [{
     question: "What does HTML mean?",
     answers: ["HyperText Markup Language", "Hypertech Markup Language", "Holly Toledo Make Loli", "Hyper Text Markup Language"],
@@ -115,7 +115,7 @@ var stopwatch = {
   },
 
   prepareNewQuestion: function () {
-    //This will empty out the results, add 1 to the quesitons index, and clear intervals
+    //This will empty out the results, add 1 to the questions index, and clear intervals
     //before starting a new question
     $('#results').empty();
     questionIndex++;
@@ -132,7 +132,7 @@ var stopwatch = {
     //this stores the correct answer, and the selected answer in variables. 
     var selectedAnswer = $('.selected').text();
 
-    var correctAnswer = questionsArray[quesitonIndex].correctAnswer;
+    var correctAnswer = questionsArray[questionIndex].correctAnswer;
     //this will empty the question area and clear the answer radio buttons as well as the submit
     $('#submit').hide();
     var correctResult = $("<div>").text("The correct answer: " + correctAnswer);
@@ -163,9 +163,9 @@ var stopwatch = {
       $('.questionArea').text(thisQuestion);
 
       //answer area
-      //debuggin questionIndex isn't defined. I tried adding a quesitonIndex  property under questionArray.question, but it caused line 86 to stop working. 
+      //debuggin questionIndex isn't defined. I tried adding a questionIndex  property under questionArray.question, but it caused line 86 to stop working. 
       //I don't understand why line 86 works and can define [questionIndex] but a function within the object the same level can't
-      theseAnswers = questionArray[questionIndex].answers;
+      theseAnswers = questionsArray[questionIndex].answers;
       for (i = 0; i < theseAnswers.length; i++) {
         //makes a new button and stores it
         thisAnswer = $("<button>");

@@ -158,6 +158,7 @@ button:hover {
         font-family: 'Fredericka the Great', cursive;
         clear: both;
         margin-left: 10px;
+        /* maybe make the margin: 0 auto; for this area both .scoreboard and .displayBoard */
     }
 .board {
     width: 100%;
