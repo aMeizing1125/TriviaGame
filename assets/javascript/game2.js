@@ -12,7 +12,7 @@ var wait8; //pause after submitting a selected
 var incorrectGuess = 0;
 var correctGuess = 0;
 var playersGuess;
-var selectedAnswer;
+// var selectedAnswer;
 
 $('#submit').hide();
 $('.answers').hide();
@@ -21,10 +21,10 @@ window.onload = function () {
   $(".reset").on("click", stopwatch.reset);
   $(".start").on("click", stopwatch.start);
   //I had to phrase it this way since .answer hasn't been created at the start of the window onload
-  $('#answers').on("click", '.answer', function () {
-    var text = $(this).text();
-    selectedAnswer = text;
-  })
+  // $('#answers').on("click", '.answer', function () {
+  //   var text = $(this).text();
+  //   selectedAnswer = text;
+  // })
   $('#submit').on("click", function () {
     stopwatch.verify();
   })
@@ -113,9 +113,11 @@ var stopwatch = {
   },
 
   verify: function () {
+    console.log('verify!');
     clockRunning = false;
-    var selected = selectedAnswer;
-    selectedAnswer = $('.selected').text();
+    var selected = $('.answer.selected').text();
+    // selectedAnswer = $('.answer.selected').text();
+    // console.log(selectedAnswer);
     var correctAnswer = questionsArray[questionIndex].correctAnswer;
     $('#answers').empty();
     $('#submit').hide();
@@ -176,11 +178,11 @@ var stopwatch = {
     allAnswers = $('.answer');
     allAnswers.on('click', function () {
       //toggle means switch between the selected options. 
-      $(".selected").toggleClass("selected");
-      $(this).toggleClass("selected");
+      $(".answer").removeClass("selected");
+      $(this).addClass("selected");
     })
     //makes sure the selected answer is verfied as the correctAnswer. 
-    $("#submit").on("click", stopwatch.verify);
+    // $("#submit").on("click", stopwatch.verify);
   },
 
   stop: function () {
