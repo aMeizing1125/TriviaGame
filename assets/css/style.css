@@ -20,9 +20,14 @@ button:hover {
     color: white;
 }
 
-/* #submit {
-    visibility: hidden;
-} */
+.answer.selected {
+    background-color: rgba(13, 29, 56, .8);
+    color: white;
+}
+.selected {
+    background-color: rgba(13, 29, 56, .8);
+    color: white;
+}
 
 
 /* Scoreboard */
@@ -64,7 +69,13 @@ button:hover {
     background-color: rgba(97, 168, 239, 1);
 }
 
-.selected {
+.answer:hover {
+    background-color: rgba(97, 168, 239, 0.3);
+    border: (white 2px solid);
+
+}
+
+.answer:active {
     background-color: rgba(97, 168, 239, 0.3);
     border: (white 2px solid);
 

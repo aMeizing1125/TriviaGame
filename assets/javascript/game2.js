@@ -13,12 +13,15 @@ var incorrectGuess = 0;
 var correctGuess = 0;
 var playersGuess;
 var selectedAnswer;
+var scorePoints;
+var wins = 0;
+var losses = 0;
 
 $('#submit').hide();
 $('.answers').hide();
 
 window.onload = function () {
-  $(".reset").on("click", stopwatch.reset);
+  $("#reset").on("click", stopwatch.reset);
   $(".start").on("click", stopwatch.start);
   //I had to phrase it this way since .answer hasn't been created at the start of the window onload
   $('#answers').on("click", '.answer', function () {
@@ -46,7 +49,7 @@ questionsArray = [{
     correctAnswer: "var",
   },
   {
-    question: "A very useful too for testing code and debugging is ?",
+    question: "A very useful tool for testing code and debugging is ?",
     answers: ["bash", "github", "console.log", "for loops"],
     correctAnswer: "console.log",
   },
@@ -61,7 +64,7 @@ questionsArray = [{
     correctAnswer: "document.write",
   },
   {
-    question: "Iterations always start counting with which number?",
+    question: "Which number does Iterations USUALLY start counting with?",
     answers: ["1", "2", "3", "0"],
     correctAnswer: "0",
   },
@@ -86,20 +89,29 @@ questionsArray = [{
 var stopwatch = {
   //change this back to 30secs after testing***
   // time: 30,
-  time: 15,
+  time: 30,
 
 
   reset: function () {
-    stopwatch.time = 1000 * 15;
-    $(".timer").text("Timer: 00:15");
-    //change to 30
-    this.time = 15
+    console.log('resetting');
+    stopwatch.time = 1000 * 30;
+    $(".timer").text("Timer: 00:30");
+    this.time = 30;
+    // stopwatch.time = 1000 * 8;
+    // $(".timer").text("Timer: 00:08");
+    // this.time = 8;
     $('#submit').hide();
     $('.answers').hide();
+    $('.questionArea').empty();
+    $('.multipleChoice').empty();
+    incorrectGuess = 0;
+    correctGuess = 0;
+    stopwatch.start();
     // $('#results').empty();//added this after studying with Aaron
   },
 
   prepareNewQuestion: function () {
+
     //This will empty out the results, add 1 to the questions index, and clear intervals
     //before starting a new question
     $('#results').empty();
@@ -108,8 +120,9 @@ var stopwatch = {
     clearTimeout(wait8);
     clearInterval(intervalId);
     stopwatch.start();
-    // stopwatch.time = 30;
-    stopwatch.time = 15;
+    stopwatch.time = 30;
+    // stopwatch.time = 15;
+
   },
 
   verify: function () {
@@ -128,7 +141,7 @@ var stopwatch = {
 
 
     $("#results").append(correctResult, answerResult);
-    wait8 = setTimeout(stopwatch.prepareNewQuestion, 1000 * 8);
+    wait8 = setTimeout(stopwatch.prepareNewQuestion, 1000 * 5);
     if (selected === correctAnswer) {
       correctGuess++;
       $('.numberCorrect').text(correctGuess);
@@ -139,35 +152,42 @@ var stopwatch = {
   },
 
   start: function () {
-    if (!clockRunning) {
-      //the reason this isn't a -1000 is because it has to count up like normal time you can't make it go backwards yet. 
-      intervalId = setInterval(stopwatch.count, 1000);
-      clockRunning = true;
-      $('#submit').show();
-      $('#answer').show();
+    console.log("Question index:   " + questionIndex);
+    console.log("Questions array length: " + questionsArray.length);
+    if (questionIndex === questionsArray.length) {
+      $(this).endGame(); // I have tried this so many ways.  $(this).endGame();    $(this).stopwatch.endGame();    this.stopwatch.endGame(); 
+    } else {
+      if (!clockRunning) {
+        //the reason this isn't a -1000 is because it has to count up like normal time you can't make it go backwards yet. 
+        intervalId = setInterval(stopwatch.count, 1000);
+        clockRunning = true;
+        $('#submit').show();
+        $('#answer').show();
+        $(".start").hide();
 
-      //question area
-      thisQuestion = questionsArray[questionIndex].question;
-      $('.questionArea').text(thisQuestion);
+        //question area
+        thisQuestion = questionsArray[questionIndex].question;
+        $('.questionArea').text(thisQuestion);
 
-      //answer area
-      //debuggin questionIndex isn't defined. I tried adding a questionIndex  property under questionArray.question, but it caused line 86 to stop working. 
-      //I don't understand why line 86 works and can define [questionIndex] but a function within the object the same level can't
-      theseAnswers = questionsArray[questionIndex].answers;
-      for (i = 0; i < theseAnswers.length; i++) {
-        //makes a new button and stores it
-        thisAnswer = $("<button>");
-        //This gives the new answer <button> a type and a class
-        thisAnswer.attr({
-          type: "radio",
-          class: "answer",
-        })
-        thisAnswer.text(theseAnswers[i]);
-        //with attaches the button to the multiple choice answer area'
+        //answer area
+        //debuggin questionIndex isn't defined. I tried adding a questionIndex  property under questionArray.question, but it caused line 86 to stop working. 
+        //I don't understand why line 86 works and can define [questionIndex] but a function within the object the same level can't
+        theseAnswers = questionsArray[questionIndex].answers;
+        for (i = 0; i < theseAnswers.length; i++) {
+          //makes a new button and stores it
+          thisAnswer = $("<button>");
+          //This gives the new answer <button> a type and a class
+          thisAnswer.attr({
+            type: "radio",
+            class: "answer",
 
-        $("#answers").append(thisAnswer);
+          })
+          thisAnswer.text(theseAnswers[i]);
+          //with attaches the button to the multiple choice answer area'
+
+          $("#answers").append(thisAnswer);
+        };
       };
-
     }
     // The below code made it to where if you selected multiple answers it would append all the selections instead of the last one only. WHY?!
     //okay so I need to toggle and remove the added class if toggled. hmm....
@@ -175,12 +195,11 @@ var stopwatch = {
 
     allAnswers = $('.answer');
     allAnswers.on('click', function () {
-      //toggle means switch between the selected options. 
-      $(".selected").toggleClass("selected");
-      $(this).toggleClass("selected");
+      $(".answer").removeClass("selected");
+      $(this).add(".selected");
     })
     //makes sure the selected answer is verfied as the correctAnswer. 
-    $("#submit").on("click", stopwatch.verify);
+    // $("#submit").on("click", stopwatch.verify);
   },
 
   stop: function () {
@@ -207,10 +226,42 @@ var stopwatch = {
         $('#answers').empty();
         stopwatch.prepareNewQuestion();
       }
+    } else if (questionIndex === questionsArray.length) {
+      endGame();
     }
+  },
+
+  endGame: function () {
+    clockRunning = false;
+    $(".questionArea").empty();
+    $("#answers").empty();
+    $('#submit').show();
+
+    console.log("endGame()");
+    if (correctGuess >= 7) {
+      $('.questionArea').empty();
+      $('.questionArea').prepend('<img  src="assets/images/winner.jpg" />')
+      wins++;
+      $('.wins').text('Wins: ' + wins);
+      $('.submit').show();
+      time = 30;
+      $(".start").show();
+    } else {
+      $('.questionArea').prepend('<img  src="assets/images/loser.jpg" />')
+      losses++;
+      $('.losses').text('Losses: ' + losses)
+      $('.submit').show();
+      time = 30;
+      $(".start").show();
+    }
+
   },
   //so I moved this from underneath the count()  so it would be separate and I could call it. 
   //for some reason it seemed smarter than leaving it within the count() 
+  // score: function() {
+  // score = correctGuess*100;
+  // $('#score').text("Score: " + score);
+  // },
 
   timeConverter: function (t) {
     var minutes = Math.floor(t / 60);
