@@ -197,6 +197,7 @@ var stopwatch = {
     allAnswers.on('click', function () {
       $(".answer").removeClass("selected");
       $(this).add(".selected");
+      console.log(".selected");
     })
     //makes sure the selected answer is verfied as the correctAnswer. 
     // $("#submit").on("click", stopwatch.verify);
