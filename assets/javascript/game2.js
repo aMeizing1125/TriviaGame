@@ -1,8 +1,7 @@
 //Yes, I did steal the example. I assumed that's what their  intended purpose was. 
 //Why reinvent the wheel when I can just take this one. I did retype it multiple times
 //start psuedo coding in categories of inputs and outputs. 
-//put all the inputs in one area. when you are psuedo coding things out in the beginning. 
-//
+//put all the inputs in one area. when you are psuedo coding things out in the beginning.
 
 var questionIndex = 0; //  Variable that will hold our setInterval that runs the stopwatch
 var intervalId; // prevents the clock from being sped up.
@@ -12,7 +11,7 @@ var wait8; //pause after submitting a selected
 var incorrectGuess = 0;
 var correctGuess = 0;
 var playersGuess;
-var selectedAnswer;
+var selectedAnswer = [];
 var scorePoints;
 var wins = 0;
 var losses = 0;
@@ -91,8 +90,8 @@ var stopwatch = {
   // time: 30,
   time: 30,
 
-
   reset: function () {
+    clearInterval(intervalId);// trying this randomly in a haze
     questionIndex = 0;
     console.log('resetting');
     $(".timer").text("Timer: 00:30");
@@ -100,19 +99,21 @@ var stopwatch = {
     // stopwatch.time = 1000 * 8;
     // $(".timer").text("Timer: 00:08");
     // this.time = 8;
-    $('.start').show();
     $('#submit').hide();
-    $('.answers').hide();
+    $('#answers').empty();
+    $('#answers').show();
     $('.questionArea').empty();
-    $('.multipleChoice').empty();
-    incorrectGuess = 0;
+        incorrectGuess = 0;
     correctGuess = 0;
+    $('.numberCorrect').text(correctGuess);
+    $('.numberIncorrect').text(incorrectGuess);
     stopwatch.start();
-    // $('#results').empty();//added this after studying with Aaron
+    $('#results').empty();//added this after studying with Aaron
+        
+
   },
 
   prepareNewQuestion: function () {
-
     //This will empty out the results, add 1 to the questions index, and clear intervals
     //before starting a new question
     $('#results').empty();
@@ -123,7 +124,6 @@ var stopwatch = {
     stopwatch.start();
     stopwatch.time = 30;
     // stopwatch.time = 15;
-
   },
 
   verify: function () {
@@ -134,12 +134,10 @@ var stopwatch = {
     $('#answers').empty();
     $('#submit').hide();
 
-
     var answerResult = $("<div>");
     answerResult.text("Your Answer: " + selected);
     var correctResult = $("<div>");
     correctResult.text("Correct Answer: " + correctAnswer);
-
 
     $("#results").append(correctResult, answerResult);
     wait8 = setTimeout(stopwatch.prepareNewQuestion, 1000 * 5);
@@ -153,8 +151,6 @@ var stopwatch = {
   },
 
   start: function () {
-    console.log("Question index:   " + questionIndex);
-    console.log("Questions array length: " + questionsArray.length);
     if (questionIndex === questionsArray.length) {
       stopwatch.endGame(); //was way overthinking it I don't need to put this.. duh! //I have tried this so many ways.  $(this).endGame();    $(this).stopwatch.endGame();    this.stopwatch.endGame(); 
     } else {
@@ -164,7 +160,7 @@ var stopwatch = {
         intervalId = setInterval(stopwatch.count, 1000);
         clockRunning = true;
         $('#submit').show();
-        $('#answer').show();
+        $('#answers').show();
         $(".start").hide();
 
         //question area
@@ -182,11 +178,9 @@ var stopwatch = {
           thisAnswer.attr({
             type: "radio",
             class: "answer",
-
           })
           thisAnswer.text(theseAnswers[i]);
           //with attaches the button to the multiple choice answer area'
-
           $("#answers").append(thisAnswer);
         };
       };
@@ -241,15 +235,15 @@ var stopwatch = {
     $('#submit').show();
 
     console.log("endGame()");
-    if (correctGuess >= 7) {
+    if (correctGuess >= 2) {
+    // if (correctGuess >= 7) {
       $('.questionArea').empty();
       $('.questionArea').prepend('<img  src="assets/images/winner.jpg" />')
       wins++;
       $('.wins').text('Wins: ' + wins);
       $('.submit').show();
       time = 30;
-      $(".start").show();
-    } else {
+       } else {
       $('.questionArea').prepend('<img  src="assets/images/loser.jpg" />')
       losses++;
       $('.losses').text('Losses: ' + losses)
@@ -257,7 +251,6 @@ var stopwatch = {
       time = 30;
       $(".start").show();
     }
-
   },
   //so I moved this from underneath the count()  so it would be separate and I could call it. 
   //for some reason it seemed smarter than leaving it within the count() 
