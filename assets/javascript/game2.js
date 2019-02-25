@@ -33,55 +33,55 @@ window.onload = function () {
 };
 
 questionsArray = [{
-    question: "What does HTML mean?",
-    answers: ["HyperText Markup Language", "Hypertech Markup Language", "Holly Toledo Make Loli", "Hyper Text Markup Language"],
-    correctAnswer: "HyperText Markup Language",
-  },
-  {
-    question: "What does API stand represent?",
-    answers: ["Anti-Programming Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
-    correctAnswer: "Application Programming Interface",
-  },
-  // {
-  //   question: "Variables can be declared in Javascript using the ___ keyword",
-  //   answers: ["varr", "variable", "val", "var"],
-  //   correctAnswer: "var",
-  // },
-  // {
-  //   question: "A very useful tool for testing code and debugging is ?",
-  //   answers: ["bash", "github", "console.log", "for loops"],
-  //   correctAnswer: "console.log",
-  // },
-  // {
-  //   question: "A function's ___ are only visible from within the function body.",
-  //   answers: ["arguments", "definitions", "keys", "values"],
-  //   correctAnswer: "arguments",
-  // },
-  // {
-  //   question: "We can use Javascript to directly write to the HTML page using which?",
-  //   answers: ["console.log", "document.write", "$('document').write", "variables"],
-  //   correctAnswer: "document.write",
-  // },
-  // {
-  //   question: "Which number does Iterations USUALLY start counting with?",
-  //   answers: ["1", "2", "3", "0"],
-  //   correctAnswer: "0",
-  // },
-  // {
-  //   question: "You can get the number of elements in an array using the ___property.",
-  //   answers: ["variable.length", "array.length", "var.length", "array.index"],
-  //   correctAnswer: "array.length",
-  // },
-  // {
-  //   question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.",
-  //   answers: ["event.key", "browser.event", "page.key", "document.onkeyup"],
-  //   correctAnswer: "document.onkeyup",
-  // },
-  // {
-  //   question: "What does DRY stand for?",
-  //   answers: ["Don't recommend yellowtail", "Don't repeat yourself", "Don't remove yourself", "Don't relive yesterday"],
-  //   correctAnswer: "Don't repeat yourself",
-  // },
+  question: "What does HTML mean?",
+  answers: ["HyperText Markup Language", "Hypertech Markup Language", "Holly Toledo Make Loli", "Hyper Text Markup Language"],
+  correctAnswer: "HyperText Markup Language",
+},
+{
+  question: "What does API stand represent?",
+  answers: ["Anti-Programming Initiative", "Application Programming Interface", "Application Properties Interface", "Applicaiton Proxy Interface"],
+  correctAnswer: "Application Programming Interface",
+},
+{
+  question: "Variables can be declared in Javascript using the ___ keyword",
+  answers: ["varr", "variable", "val", "var"],
+  correctAnswer: "var",
+},
+{
+  question: "A very useful tool for testing code and debugging is ?",
+  answers: ["bash", "github", "console.log", "for loops"],
+  correctAnswer: "console.log",
+},
+{
+  question: "A function's ___ are only visible from within the function body.",
+  answers: ["arguments", "definitions", "keys", "values"],
+  correctAnswer: "arguments",
+},
+{
+  question: "We can use Javascript to directly write to the HTML page using which?",
+  answers: ["console.log", "document.write", "$('document').write", "variables"],
+  correctAnswer: "document.write",
+},
+{
+  question: "Which number does Iterations USUALLY start counting with?",
+  answers: ["1", "2", "3", "0"],
+  correctAnswer: "0",
+},
+{
+  question: "You can get the number of elements in an array using the ___property.",
+  answers: ["variable.length", "array.length", "var.length", "array.index"],
+  correctAnswer: "array.length",
+},
+{
+  question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.",
+  answers: ["event.key", "browser.event", "page.key", "document.onkeyup"],
+  correctAnswer: "document.onkeyup",
+},
+{
+  question: "What does DRY stand for?",
+  answers: ["Don't recommend yellowtail", "Don't repeat yourself", "Don't remove yourself", "Don't relive yesterday"],
+  correctAnswer: "Don't repeat yourself",
+},
 ];
 
 
@@ -92,8 +92,8 @@ var stopwatch = {
 
   reset: function () {
     clearInterval(intervalId);// trying this randomly in a haze
+    $('#reset').hide();
     questionIndex = 0;
-    console.log('resetting');
     $(".timer").text("Timer: 00:30");
     this.time = 30;
     // stopwatch.time = 1000 * 8;
@@ -103,14 +103,13 @@ var stopwatch = {
     $('#answers').empty();
     $('#answers').show();
     $('.questionArea').empty();
-        incorrectGuess = 0;
+    incorrectGuess = 0;
     correctGuess = 0;
     $('.numberCorrect').text(correctGuess);
     $('.numberIncorrect').text(incorrectGuess);
     stopwatch.start();
     $('#results').empty();//added this after studying with Aaron
-        
-
+    $('.instructions').text("You got this girl!")
   },
 
   prepareNewQuestion: function () {
@@ -133,12 +132,10 @@ var stopwatch = {
     var correctAnswer = questionsArray[questionIndex].correctAnswer;
     $('#answers').empty();
     $('#submit').hide();
-
     var answerResult = $("<div>");
     answerResult.text("Your Answer: " + selected);
     var correctResult = $("<div>");
-    correctResult.text("Correct Answer: " + correctAnswer);
-
+    correctResult.text("Correct Answer: " + correctAnswer);   
     $("#results").append(correctResult, answerResult);
     wait8 = setTimeout(stopwatch.prepareNewQuestion, 1000 * 5);
     if (selected === correctAnswer) {
@@ -155,7 +152,8 @@ var stopwatch = {
       stopwatch.endGame(); //was way overthinking it I don't need to put this.. duh! //I have tried this so many ways.  $(this).endGame();    $(this).stopwatch.endGame();    this.stopwatch.endGame(); 
     } else {
       if (!clockRunning) {
-        console.log("it is starting the time and answers");
+        $('#reset').hide();
+        // console.log("it is starting the time and answers");
         //the reason this isn't a -1000 is because it has to count up like normal time you can't make it go backwards yet. 
         intervalId = setInterval(stopwatch.count, 1000);
         clockRunning = true;
@@ -193,7 +191,7 @@ var stopwatch = {
     allAnswers.on('click', function () {
       $(".answer").removeClass("selected");
       allAnswers.add(".selected");
-      console.log(".selected");
+
     })
     //makes sure the selected answer is verfied as the correctAnswer. 
     // $("#submit").on("click", stopwatch.verify);
@@ -233,31 +231,26 @@ var stopwatch = {
     $(".questionArea").empty();
     $("#answers").empty();
     $('#submit').show();
-
-    console.log("endGame()");
-    if (correctGuess >= 2) {
-    // if (correctGuess >= 7) {
+      if (correctGuess >= 7) {
       $('.questionArea').empty();
       $('.questionArea').prepend('<img  src="assets/images/winner.jpg" />')
       wins++;
       $('.wins').text('Wins: ' + wins);
       $('.submit').show();
       time = 30;
-       } else {
+      $('.instructions').text("Great job! A++")
+      $('#reset').show();
+    } else {
       $('.questionArea').prepend('<img  src="assets/images/loser.jpg" />')
       losses++;
       $('.losses').text('Losses: ' + losses)
       $('.submit').show();
       time = 30;
       $(".start").show();
+      $('.instructions').text("Let's try that again! Shall we? ")
+      $('#reset').show();
     }
   },
-  //so I moved this from underneath the count()  so it would be separate and I could call it. 
-  //for some reason it seemed smarter than leaving it within the count() 
-  // score: function() {
-  // score = correctGuess*100;
-  // $('#score').text("Score: " + score);
-  // },
 
   timeConverter: function (t) {
     var minutes = Math.floor(t / 60);

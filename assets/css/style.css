@@ -8,7 +8,9 @@ body {
     line-height: 1.2;
 }
 
-.everything {}
+.everything {
+
+}
 
 button {
     font-size: 36px;
@@ -24,6 +26,7 @@ button:hover {
     background-color: rgba(13, 29, 56, .8);
     color: white;
 }
+
 .selected {
     background-color: rgba(13, 29, 56, .8);
     color: white;
@@ -80,7 +83,10 @@ button:hover {
     border: (white 2px solid);
 
 }
-
+.instructions {
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: bold;
+}
 .result {
     font-size: 40px;
 }
@@ -127,6 +133,24 @@ button:hover {
 
     }
 }
+@media screen and (min-width: 1630px) {
+    .scoreboard {
+        margin-top: 120px;
+    }
+    .displayBoard {
+        margin-top: 20px;
+    }
+}
+@media screen and (min-width: 1780px) {
+    .scoreboard {
+        margin-top: 130px;
+        margin-left: 100px;
+    }
+    .displayBoard {
+        margin-top: 20px;
+    }
+}
+
 
 @media screen and (max-width: 1050px) {
     body {
@@ -142,6 +166,10 @@ button:hover {
         margin-left: 170px;
         position: absolute;
         font-family: 'Fredericka the Great', cursive;
+        background-color: black;
+        opacity: .7;
+        text-align: center;
+        
 
     }
 

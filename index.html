@@ -16,19 +16,21 @@
 <body>
   <div class="everything">
     <div class="scoreboard container">
-      <div class="score"><u>Trivia Game! </u><span id="score"></span></div>  <!--Change to score if you want, for now love the look-->
+      <div class="score"><u>Trivia Game! </u><span id="score"></span></div>
       <div class="timer">Timer 00:30</div>
       <div class="correct">Correct: <span class="numberCorrect"></span></div>
       <div class="incorrect">Incorrect: <span class="numberIncorrect"></span></div>
-      <div class="winsAndLosses"><span class="wins">Wins:</span>  <span class="losses">Losses:</span></div>      
-
+      <div class="winsAndLosses"><span class="wins">Wins:</span> <span class="losses">Losses:</span></div>
     </div>
 
     <div class="board container">
-      <!-- <p>Instructions: Click Start Game when you are ready. Selected the answer and then presss submit. </p> -->
       <div class="displayBoard">
+        <div class="instructions"> You will have 30 secs to select and answer. Submit your answer before time runs out.
+          <br>
+           Good Luck!</div>       
         <button class="start">Start Game</button>
         <button type="reset" id="reset">Reset Game</button>
+        <hr>
         <div class="questionArea">Your questions will display here</div>
         <div class="multipleChoice">
           <div id="answers"></div>
